@@ -1,36 +1,29 @@
 # README
-1.add gems, models, controllers, tests structure
-2. add helper methods
+
+### Built with:
+- Rails 6.1.3
+- Postgresql
+
+ - 1.add gems, models, controllers, tests structure
+ - 2. add helper methods
 `rails s` , run CLI
-/# GET /todos
+- Requests for todos:
+ - /# GET /todos
 `curl http://localhost:3000/todos`
 
-/# POST /todos
+ - /# POST /todos
 `curl --header "Content-Type: application/json" --request POST --data '{"title": "Lara", "created_by": "1"}' http://localhost:3000/todos`
-/PUT /todos/:id
+ - /PUT /todos/:id
 `curl --header "Content-Type: application/json" --request PUT --data '{"title": "Beethoven"}' http://localhost:3000/todos/1`
-/# DELETE /todos/:id
+ - /# DELETE /todos/:id
 `curl --header "Content-Type: application/json" --request DELETE http://localhost:3000/todos/1`
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Requests for items:
+ - /# GET /todos/:todo_id/items
+ `curl http://localhost:3000/todos/2/items`
+ - /# POST /todos/:todo_id/items
+ `curl --header "Content-Type: application/json" --request POST --data '{"name": "Listen to the Symphony", "done": "false"}' http://localhost:3000/todos/2/items`
+ - /# PUT /todos/:todo_id/items/:id
+ `curl --header "Content-Type: application/json" --request PUT --data '{"done": "true"}' http://localhost:3000/todos/2/items/1`
+ - /# DELETE /todos/:todo_id/items/:item_id
+ `curl --header "Content-Type: application/json" --request DELETE http://localhost:3000/todos/2/items/1`
