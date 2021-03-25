@@ -37,6 +37,7 @@ AuthenticationController - Orchestrate authentication process)
  - 5. Authorize Api Request
    - add Auth folder, tests and helpers
  - 6. Authenticate User
+ - 7. Add Authentication Controller, tests, add rout, add Users controller tests and rout
 
 
 
