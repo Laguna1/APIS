@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# spec/requests/items_spec.rb
 require 'rails_helper'
 
 RSpec.describe 'Items API' do

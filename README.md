@@ -4,7 +4,7 @@
 - Rails 6.1.3
 - Postgresql
 
- - 1.add gems, models, controllers, tests structure
+ - 1. add gems, models, controllers, tests structure
  - 2. add helper methods
 `rails s` , run CLI
 - Requests for todos:
@@ -27,3 +27,17 @@
  `curl --header "Content-Type: application/json" --request PUT --data '{"done": "true"}' http://localhost:3000/todos/2/items/1`
  - /# DELETE /todos/:todo_id/items/:item_id
  `curl --header "Content-Type: application/json" --request DELETE http://localhost:3000/todos/2/items/1`
+ - 3. Add User model name email password_digest
+   - add tests for User model, gem 'bcrypt', validations and associations
+   -  next steps (JsonWebToken - Encode and decode jwt tokens,
+AuthorizeApiRequest - Authorize each API request,
+AuthenticateUser - Authenticate users,
+AuthenticationController - Orchestrate authentication process)
+
+
+
+
+ `rubocop \
+  --require rubocop-rspec \
+  --only FactoryBot/AttributeDefinedStatically \
+  --auto-correct`
