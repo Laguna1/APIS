@@ -1,5 +1,5 @@
 # README
-
+1.add gems, models, controllers, tests structure
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
