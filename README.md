@@ -36,7 +36,8 @@ AuthenticationController - Orchestrate authentication process)
  - 4. Add gem 'jwt' and create 'app/lib/json_web_token.rb', define jwt singleton
  - 5. Authorize Api Request
    - add Auth folder, tests and helpers
-   
+ - 6. Authenticate User
+
 
 
  `rubocop \
