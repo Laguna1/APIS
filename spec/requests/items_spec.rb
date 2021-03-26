@@ -13,7 +13,7 @@ RSpec.describe 'Items API' do
 
   # Test suite for GET /todos/:todo_id/items
   describe 'GET /todos/:todo_id/items' do
-    before { get "/todos/#{todo_id}/items", params: {}, headers: headers  }
+    before { get "/todos/#{todo_id}/items", params: {}, headers: headers }
 
     context 'when todo exists' do
       it 'returns status code 200' do
@@ -40,7 +40,7 @@ RSpec.describe 'Items API' do
 
   # Test suite for GET /todos/:todo_id/items/:id
   describe 'GET /todos/:todo_id/items/:id' do
-    before { get "/todos/#{todo_id}/items/#{id}", params: {}, headers: headers  }
+    before { get "/todos/#{todo_id}/items/#{id}", params: {}, headers: headers }
 
     context 'when todo item exists' do
       it 'returns status code 200' do
