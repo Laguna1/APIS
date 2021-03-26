@@ -1,5 +1,8 @@
 # README
 
+@scotch-io tutorial "Build a RESTful JSON API with Rails 5" codebase
+[Source](https://www.digitalocean.com/community/tutorials/build-a-restful-json-api-with-rails-5-part-one)
+
 ### Built with:
 - Rails 6.1.3
 - Postgresql
@@ -78,3 +81,8 @@ message: {"message":"Hello there"}
 http :3000/todos Accept:'application/vnd.todos.v1+json' Authorization:'ey...HnLw2bYQbK0g'
 
 curl --location --request GET 'http://localhost:3000/v1/todos' --header 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2MTY4ODMyNDV9.JmjYilI4Ss3Pz7PcI2iFxJ7oIxvb2zE0WvfMiUaP1Lg'
+
+http :3000/todos Accept:'application/vnd.todos.v1+json' Authorization:'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2MTY4ODMyNDV9.JmjYilI4Ss3Pz7PcI2iFxJ7oIxvb2zE0WvfMiUaP1Lg'
+
+curl --location --request GET 'http://localhost:3000/v1/todos' --header 'Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2MTY4ODMyNDV9.JmjYilI4Ss3Pz7PcI2iFxJ7oIxvb2zE0WvfMiUaP1Lg'
+
