@@ -38,6 +38,8 @@ AuthenticationController - Orchestrate authentication process)
    - add Auth folder, tests and helpers
  - 6. Authenticate User
  - 7. Add Authentication Controller, tests, add rout, add Users controller tests and rout
+ - 8. Implement a callback in the application controller which authenticates every request
+ - 9. Skip request authentication for authentication and signup actions, update request tests
 
 
 
