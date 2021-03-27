@@ -1,0 +1,1680 @@
+  [1m[35m (2089.8ms)[0m  [1m[35mCREATE DATABASE "todoss_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (1336.5ms)[0m  [1m[35mCREATE DATABASE "todoss_api_test" ENCODING = 'unicode'[0m
+Started GET "/" for ::1 at 2021-03-25 19:49:50 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/oksana/.rbenv/versions/2.7.2/lib/ruby/gems/2.7.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/oksana/.rbenv/versions/2.7.2/lib/ruby/gems/2.7.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 28.0ms | Allocations: 399)
+Completed 200 OK in 71ms (Views: 52.2ms | ActiveRecord: 0.0ms | Allocations: 3401)
+
+
+Started GET "/favicon.ico" for ::1 at 2021-03-25 19:49:51 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+  [1m[35m (692.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (121.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2977077618344736900)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTodos (20210325175624)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (257.0ms)[0m  [1m[35mCREATE TABLE "todos" ("id" bigserial primary key, "title" character varying, "created_by" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210325175624"]]
+  [1m[36mTRANSACTION (17.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateItems (20210325175650)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (170.9ms)[0m  [1m[35mCREATE TABLE "items" ("id" bigserial primary key, "name" character varying, "done" boolean, "todo_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_c01e6b449d"
+FOREIGN KEY ("todo_id")
+  REFERENCES "todos" ("id")
+)[0m
+  [1m[35m (95.4ms)[0m  [1m[35mCREATE INDEX "index_items_on_todo_id" ON "items" ("todo_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210325175650"]]
+  [1m[36mTRANSACTION (38.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (18.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-03-25 17:57:13.290216"], ["updated_at", "2021-03-25 17:57:13.290216"]]
+  [1m[36mTRANSACTION (29.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(2977077618344736900)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/todos" for 127.0.0.1 at 2021-03-25 21:04:12 +0200
+  [1m[35m (39.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+You have 0 pending migration:
+
+
+
+):
+  
+activerecord (6.1.3) lib/active_record/migration.rb:625:in `check_pending!'
+activerecord (6.1.3) lib/active_record/migration.rb:590:in `block (2 levels) in call'
+activesupport (6.1.3) lib/active_support/evented_file_update_checker.rb:59:in `execute'
+activesupport (6.1.3) lib/active_support/evented_file_update_checker.rb:65:in `execute_if_updated'
+activerecord (6.1.3) lib/active_record/migration.rb:597:in `block in call'
+activerecord (6.1.3) lib/active_record/migration.rb:587:in `synchronize'
+activerecord (6.1.3) lib/active_record/migration.rb:587:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.3) lib/rails/engine.rb:539:in `call'
+puma (5.2.2) lib/puma/configuration.rb:248:in `call'
+puma (5.2.2) lib/puma/request.rb:76:in `block in handle_request'
+puma (5.2.2) lib/puma/thread_pool.rb:337:in `with_force_shutdown'
+puma (5.2.2) lib/puma/request.rb:75:in `handle_request'
+puma (5.2.2) lib/puma/server.rb:431:in `process_client'
+puma (5.2.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2977077618344736900)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (29.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(2977077618344736900)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/todos" for 127.0.0.1 at 2021-03-25 21:07:12 +0200
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TodosController#index as */*
+  [1m[36mTodo Load (27.0ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/concerns/response.rb:4:in `json_response'
+Completed 200 OK in 61ms (Views: 2.1ms | ActiveRecord: 27.0ms | Allocations: 2179)
+
+
+Started GET "/todos" for 127.0.0.1 at 2021-03-25 21:07:53 +0200
+Processing by TodosController#index as */*
+  [1m[36mTodo Load (0.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/concerns/response.rb:4:in `json_response'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.3ms | Allocations: 632)
+
+
+Started POST "/todos" for 127.0.0.1 at 2021-03-25 21:13:08 +0200
+Processing by TodosController#create as */*
+  Parameters: {"todo"=>{}}
+[31mUnpermitted parameter: :todo[0m
+Completed 422 Unprocessable Entity in 95ms (Views: 0.2ms | ActiveRecord: 5.0ms | Allocations: 5392)
+
+
+Started POST "/todos" for 127.0.0.1 at 2021-03-25 21:14:18 +0200
+Processing by TodosController#create as */*
+  Parameters: {"todo"=>{}}
+[31mUnpermitted parameter: :todo[0m
+Completed 422 Unprocessable Entity in 3ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 1181)
+
+
+Started POST "/todos" for 127.0.0.1 at 2021-03-25 21:15:46 +0200
+Processing by TodosController#create as */*
+  Parameters: {"title"=>"Mozart", "created_by"=>"1", "todo"=>{"title"=>"Mozart", "created_by"=>"1"}}
+[31mUnpermitted parameter: :todo[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:15:in `create'
+  [1m[36mTodo Create (37.1ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Mozart"], ["created_by", "1"], ["created_at", "2021-03-25 19:15:46.286098"], ["updated_at", "2021-03-25 19:15:46.286098"]]
+  ↳ app/controllers/todos_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (31.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:15:in `create'
+Completed 201 Created in 76ms (Views: 0.5ms | ActiveRecord: 68.2ms | Allocations: 2029)
+
+
+Started GET "/todos" for ::1 at 2021-03-25 21:16:07 +0200
+Processing by TodosController#index as HTML
+  [1m[36mTodo Load (0.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/concerns/response.rb:4:in `json_response'
+Completed 200 OK in 4ms (Views: 3.8ms | ActiveRecord: 0.3ms | Allocations: 710)
+
+
+Started POST "/todos" for 127.0.0.1 at 2021-03-25 21:17:07 +0200
+Processing by TodosController#create as */*
+  Parameters: {"title"=>"Lara", "created_by"=>"1", "todo"=>{"title"=>"Lara", "created_by"=>"1"}}
+[31mUnpermitted parameter: :todo[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:15:in `create'
+  [1m[36mTodo Create (0.6ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Lara"], ["created_by", "1"], ["created_at", "2021-03-25 19:17:07.810489"], ["updated_at", "2021-03-25 19:17:07.810489"]]
+  ↳ app/controllers/todos_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (21.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:15:in `create'
+Completed 201 Created in 31ms (Views: 0.6ms | ActiveRecord: 22.2ms | Allocations: 1878)
+
+
+Started GET "/todos" for ::1 at 2021-03-25 21:17:11 +0200
+Processing by TodosController#index as HTML
+  [1m[36mTodo Load (0.6ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/concerns/response.rb:4:in `json_response'
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.6ms | Allocations: 782)
+
+
+Started GET "/todos" for 127.0.0.1 at 2021-03-25 21:20:09 +0200
+Processing by TodosController#index as */*
+  [1m[36mTodo Load (0.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/concerns/response.rb:4:in `json_response'
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.3ms | Allocations: 787)
+
+
+Started PUT "/todos/1" for 127.0.0.1 at 2021-03-25 21:28:56 +0200
+Processing by TodosController#update as */*
+  Parameters: {"id"=>"1", "todo"=>{}}
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:44:in `set_todo'
+[31mUnpermitted parameters: :id, :todo[0m
+Completed 204 No Content in 14ms (ActiveRecord: 7.4ms | Allocations: 2968)
+
+
+Started PUT "/todos/1" for 127.0.0.1 at 2021-03-25 21:30:40 +0200
+Processing by TodosController#update as */*
+  Parameters: {"title"=>"Beethoven", "id"=>"1", "todo"=>{"title"=>"Beethoven"}}
+  [1m[36mTodo Load (0.2ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:44:in `set_todo'
+[31mUnpermitted parameters: :id, :todo[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:26:in `update'
+  [1m[36mTodo Update (16.6ms)[0m  [1m[33mUPDATE "todos" SET "title" = $1, "updated_at" = $2 WHERE "todos"."id" = $3[0m  [["title", "Beethoven"], ["updated_at", "2021-03-25 19:30:40.011233"], ["id", 1]]
+  ↳ app/controllers/todos_controller.rb:26:in `update'
+  [1m[36mTRANSACTION (19.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:26:in `update'
+Completed 204 No Content in 44ms (ActiveRecord: 36.3ms | Allocations: 2192)
+
+
+Started GET "/todos" for ::1 at 2021-03-25 21:30:48 +0200
+Processing by TodosController#index as HTML
+  [1m[36mTodo Load (0.2ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/concerns/response.rb:4:in `json_response'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.2ms | Allocations: 793)
+
+
+Started POST "/todos" for 127.0.0.1 at 2021-03-25 21:33:02 +0200
+Processing by TodosController#create as */*
+  Parameters: {"title"=>"For deleting haha", "created_by"=>"2", "todo"=>{"title"=>"For deleting haha", "created_by"=>"2"}}
+[31mUnpermitted parameter: :todo[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:15:in `create'
+  [1m[36mTodo Create (0.4ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "For deleting haha"], ["created_by", "2"], ["created_at", "2021-03-25 19:33:02.179183"], ["updated_at", "2021-03-25 19:33:02.179183"]]
+  ↳ app/controllers/todos_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (16.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:15:in `create'
+Completed 201 Created in 25ms (Views: 0.6ms | ActiveRecord: 17.2ms | Allocations: 1893)
+
+
+Started GET "/todos" for ::1 at 2021-03-25 21:33:08 +0200
+Processing by TodosController#index as HTML
+  [1m[36mTodo Load (0.9ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/concerns/response.rb:4:in `json_response'
+Completed 200 OK in 6ms (Views: 4.6ms | ActiveRecord: 0.9ms | Allocations: 870)
+
+
+Started PDELETE "/todos/1" for 127.0.0.1 at 2021-03-25 21:35:23 +0200
+  
+ActionController::UnknownHttpMethod (PDELETE, accepted HTTP methods are OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT, PROPFIND, PROPPATCH, MKCOL, COPY, MOVE, LOCK, UNLOCK, VERSION-CONTROL, REPORT, CHECKOUT, CHECKIN, UNCHECKOUT, MKWORKSPACE, UPDATE, LABEL, MERGE, BASELINE-CONTROL, MKACTIVITY, ORDERPATCH, ACL, SEARCH, MKCALENDAR, and PATCH):
+  
+actionpack (6.1.3) lib/action_dispatch/http/request.rb:447:in `check_method'
+actionpack (6.1.3) lib/action_dispatch/http/request.rb:149:in `request_method'
+rack (2.2.3) lib/rack/request.rb:199:in `post?'
+actionpack (6.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:27:in `actionable_request?'
+actionpack (6.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.3) lib/rails/engine.rb:539:in `call'
+puma (5.2.2) lib/puma/configuration.rb:248:in `call'
+puma (5.2.2) lib/puma/request.rb:76:in `block in handle_request'
+puma (5.2.2) lib/puma/thread_pool.rb:337:in `with_force_shutdown'
+puma (5.2.2) lib/puma/request.rb:75:in `handle_request'
+puma (5.2.2) lib/puma/server.rb:431:in `process_client'
+puma (5.2.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Started DELETE "/todos/1" for 127.0.0.1 at 2021-03-25 21:35:55 +0200
+Processing by TodosController#destroy as */*
+  Parameters: {"id"=>"1", "todo"=>{}}
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/todos_controller.rb:44:in `set_todo'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:32:in `destroy'
+  [1m[36mItem Load (15.6ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 1]]
+  ↳ app/controllers/todos_controller.rb:32:in `destroy'
+  [1m[36mTodo Destroy (1.3ms)[0m  [1m[31mDELETE FROM "todos" WHERE "todos"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/todos_controller.rb:32:in `destroy'
+  [1m[36mTRANSACTION (28.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:32:in `destroy'
+Completed 204 No Content in 118ms (ActiveRecord: 51.7ms | Allocations: 6389)
+
+
+Started GET "/todos" for ::1 at 2021-03-25 21:36:04 +0200
+Processing by TodosController#index as HTML
+  [1m[36mTodo Load (0.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/concerns/response.rb:4:in `json_response'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.3ms | Allocations: 782)
+
+
+Started GET "/todos" for ::1 at 2021-03-25 21:59:11 +0200
+Processing by TodosController#index as HTML
+  [1m[36mTodo Load (1.1ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+Completed 200 OK in 27ms (Views: 23.9ms | ActiveRecord: 8.0ms | Allocations: 5601)
+
+
+Started POST "/todos" for 127.0.0.1 at 2021-03-25 22:00:12 +0200
+Processing by TodosController#create as */*
+  Parameters: {"title"=>"Hello API", "created_by"=>"2", "todo"=>{"title"=>"Hello API", "created_by"=>"2"}}
+[31mUnpermitted parameter: :todo[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:15:in `create'
+  [1m[36mTodo Create (0.9ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Hello API"], ["created_by", "2"], ["created_at", "2021-03-25 20:00:12.036425"], ["updated_at", "2021-03-25 20:00:12.036425"]]
+  ↳ app/controllers/todos_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (19.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:15:in `create'
+Completed 201 Created in 30ms (Views: 0.6ms | ActiveRecord: 21.0ms | Allocations: 1957)
+
+
+Started GET "/todos" for ::1 at 2021-03-25 22:00:32 +0200
+Processing by TodosController#index as HTML
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+Completed 200 OK in 5ms (Views: 4.0ms | ActiveRecord: 0.5ms | Allocations: 870)
+
+
+Started GET "/todos" for ::1 at 2021-03-25 22:02:50 +0200
+Processing by TodosController#index as HTML
+  [1m[36mTodo Load (0.2ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+Completed 200 OK in 3ms (Views: 2.8ms | ActiveRecord: 0.2ms | Allocations: 870)
+
+
+Started POST "/todos" for 127.0.0.1 at 2021-03-25 22:04:59 +0200
+Processing by TodosController#create as */*
+  Parameters: {"title"=>"Microverse API", "created_by"=>"2", "todo"=>{"title"=>"Microverse API", "created_by"=>"2"}}
+[31mUnpermitted parameter: :todo[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/todos_controller.rb:15:in `create'
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "Microverse API"], ["created_by", "2"], ["created_at", "2021-03-25 20:04:59.903827"], ["updated_at", "2021-03-25 20:04:59.903827"]]
+  ↳ app/controllers/todos_controller.rb:15:in `create'
+  [1m[36mTRANSACTION (16.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/todos_controller.rb:15:in `create'
+Completed 201 Created in 24ms (Views: 0.6ms | ActiveRecord: 17.2ms | Allocations: 1868)
+
+
+Started GET "/todos" for ::1 at 2021-03-25 22:05:04 +0200
+Processing by TodosController#index as HTML
+  [1m[36mTodo Load (0.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.3ms | Allocations: 959)
+
+
+Started GET "/todos/2/items" for 127.0.0.1 at 2021-03-25 22:07:57 +0200
+Processing by ItemsController#index as */*
+  Parameters: {"todo_id"=>"2"}
+  [1m[36mTodo Load (0.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/items_controller.rb:43:in `set_todo'
+  [1m[36mItem Load (0.6ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 2]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+Completed 200 OK in 10ms (Views: 3.6ms | ActiveRecord: 1.1ms | Allocations: 2046)
+
+
+Started GET "/todos/2/items" for 127.0.0.1 at 2021-03-25 22:08:43 +0200
+Processing by ItemsController#index as */*
+  Parameters: {"todo_id"=>"2"}
+  [1m[36mTodo Load (0.4ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/items_controller.rb:43:in `set_todo'
+  [1m[36mItem Load (0.5ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 2]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+Completed 200 OK in 6ms (Views: 2.2ms | ActiveRecord: 1.0ms | Allocations: 1152)
+
+
+Started POST "/todos/2/items" for 127.0.0.1 at 2021-03-25 22:14:33 +0200
+Error occurred while parsing request parameters.
+Contents:
+
+{"name": "Listen to the Symphony", done : false}
+  
+ActionDispatch::Http::Parameters::ParseError (783: unexpected token at '{"name": "Listen to the Symphony", done : false}'):
+  
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:96:in `rescue in parse_formatted_parameters'
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:92:in `parse_formatted_parameters'
+actionpack (6.1.3) lib/action_dispatch/http/request.rb:399:in `block in POST'
+rack (2.2.3) lib/rack/request.rb:69:in `fetch'
+rack (2.2.3) lib/rack/request.rb:69:in `fetch_header'
+actionpack (6.1.3) lib/action_dispatch/http/request.rb:398:in `POST'
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:55:in `parameters'
+actionpack (6.1.3) lib/action_controller/metal/params_wrapper.rb:284:in `_wrapper_enabled?'
+actionpack (6.1.3) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+activerecord (6.1.3) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.3) lib/abstract_controller/base.rb:165:in `process'
+actionpack (6.1.3) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.3) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.1.3) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.3) lib/rails/engine.rb:539:in `call'
+puma (5.2.2) lib/puma/configuration.rb:248:in `call'
+puma (5.2.2) lib/puma/request.rb:76:in `block in handle_request'
+puma (5.2.2) lib/puma/thread_pool.rb:337:in `with_force_shutdown'
+puma (5.2.2) lib/puma/request.rb:75:in `handle_request'
+puma (5.2.2) lib/puma/server.rb:431:in `process_client'
+puma (5.2.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Error occurred while parsing request parameters.
+Contents:
+
+{"name": "Listen to the Symphony", done : false}
+Started POST "/todos/2/items" for 127.0.0.1 at 2021-03-25 22:16:52 +0200
+Error occurred while parsing request parameters.
+Contents:
+
+{"name": "Listen to the Symphony", done: false}
+  
+ActionDispatch::Http::Parameters::ParseError (783: unexpected token at '{"name": "Listen to the Symphony", done: false}'):
+  
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:96:in `rescue in parse_formatted_parameters'
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:92:in `parse_formatted_parameters'
+actionpack (6.1.3) lib/action_dispatch/http/request.rb:399:in `block in POST'
+rack (2.2.3) lib/rack/request.rb:69:in `fetch'
+rack (2.2.3) lib/rack/request.rb:69:in `fetch_header'
+actionpack (6.1.3) lib/action_dispatch/http/request.rb:398:in `POST'
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:55:in `parameters'
+actionpack (6.1.3) lib/action_controller/metal/params_wrapper.rb:284:in `_wrapper_enabled?'
+actionpack (6.1.3) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+activerecord (6.1.3) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.3) lib/abstract_controller/base.rb:165:in `process'
+actionpack (6.1.3) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.3) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.1.3) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.3) lib/rails/engine.rb:539:in `call'
+puma (5.2.2) lib/puma/configuration.rb:248:in `call'
+puma (5.2.2) lib/puma/request.rb:76:in `block in handle_request'
+puma (5.2.2) lib/puma/thread_pool.rb:337:in `with_force_shutdown'
+puma (5.2.2) lib/puma/request.rb:75:in `handle_request'
+puma (5.2.2) lib/puma/server.rb:431:in `process_client'
+puma (5.2.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Error occurred while parsing request parameters.
+Contents:
+
+{"name": "Listen to the Symphony", done: false}
+Started GET "/todos" for ::1 at 2021-03-25 22:17:38 +0200
+Processing by TodosController#index as HTML
+  [1m[36mTodo Load (0.6ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+Completed 200 OK in 18ms (Views: 18.0ms | ActiveRecord: 8.3ms | Allocations: 3009)
+
+
+Started POST "/todos/2/items" for 127.0.0.1 at 2021-03-25 22:21:22 +0200
+Error occurred while parsing request parameters.
+Contents:
+
+{"name": "Listen to the Symphony", done: false}
+  
+ActionDispatch::Http::Parameters::ParseError (783: unexpected token at '{"name": "Listen to the Symphony", done: false}'):
+  
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:96:in `rescue in parse_formatted_parameters'
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:92:in `parse_formatted_parameters'
+actionpack (6.1.3) lib/action_dispatch/http/request.rb:399:in `block in POST'
+rack (2.2.3) lib/rack/request.rb:69:in `fetch'
+rack (2.2.3) lib/rack/request.rb:69:in `fetch_header'
+actionpack (6.1.3) lib/action_dispatch/http/request.rb:398:in `POST'
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:55:in `parameters'
+actionpack (6.1.3) lib/action_controller/metal/params_wrapper.rb:284:in `_wrapper_enabled?'
+actionpack (6.1.3) lib/action_controller/metal/params_wrapper.rb:248:in `process_action'
+activerecord (6.1.3) lib/active_record/railties/controller_runtime.rb:27:in `process_action'
+actionpack (6.1.3) lib/abstract_controller/base.rb:165:in `process'
+actionpack (6.1.3) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.3) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.1.3) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.3) lib/rails/engine.rb:539:in `call'
+puma (5.2.2) lib/puma/configuration.rb:248:in `call'
+puma (5.2.2) lib/puma/request.rb:76:in `block in handle_request'
+puma (5.2.2) lib/puma/thread_pool.rb:337:in `with_force_shutdown'
+puma (5.2.2) lib/puma/request.rb:75:in `handle_request'
+puma (5.2.2) lib/puma/server.rb:431:in `process_client'
+puma (5.2.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Error occurred while parsing request parameters.
+Contents:
+
+{"name": "Listen to the Symphony", done: false}
+Started POST "/todos/2/" for 127.0.0.1 at 2021-03-25 22:21:38 +0200
+  
+ActionController::RoutingError (No route matches [POST] "/todos/2"):
+  
+Error occurred while parsing request parameters.
+Contents:
+
+{"name": "Listen to the Symphony", done: false}
+Started POST "/todos/2/items" for 127.0.0.1 at 2021-03-25 22:37:23 +0200
+Processing by ItemsController#create as */*
+  Parameters: {"name"=>"Listen to the Symphony", "done"=>"false", "todo_id"=>"2", "item"=>{"name"=>"Listen to the Symphony", "done"=>"false"}}
+  [1m[36mTodo Load (0.8ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/items_controller.rb:43:in `set_todo'
+[31mUnpermitted parameters: :todo_id, :item[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/items_controller.rb:20:in `create'
+  [1m[36mItem Create (1.3ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Listen to the Symphony"], ["done", false], ["todo_id", 2], ["created_at", "2021-03-25 20:37:23.639287"], ["updated_at", "2021-03-25 20:37:23.639287"]]
+  ↳ app/controllers/items_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (28.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/items_controller.rb:20:in `create'
+Completed 201 Created in 62ms (Views: 0.8ms | ActiveRecord: 42.8ms | Allocations: 7998)
+
+
+Started GET "/todos" for ::1 at 2021-03-25 22:38:10 +0200
+Processing by TodosController#index as HTML
+  [1m[36mTodo Load (0.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos"[0m
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.3ms | Allocations: 987)
+
+
+Started GET "/todos/2/items" for ::1 at 2021-03-25 22:38:26 +0200
+Processing by ItemsController#index as HTML
+  Parameters: {"todo_id"=>"2"}
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/items_controller.rb:43:in `set_todo'
+  [1m[36mItem Load (0.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 2]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+Completed 200 OK in 6ms (Views: 2.9ms | ActiveRecord: 0.8ms | Allocations: 1426)
+
+
+Started PUT "/todos/2/items" for 127.0.0.1 at 2021-03-25 22:42:02 +0200
+  
+ActionController::RoutingError (No route matches [PUT] "/todos/2/items"):
+  
+Started PUT "/todos/2/items/1" for 127.0.0.1 at 2021-03-25 22:43:32 +0200
+Processing by ItemsController#update as */*
+  Parameters: {"done"=>"true", "todo_id"=>"2", "id"=>"1", "item"=>{"done"=>"true"}}
+  [1m[36mTodo Load (0.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/items_controller.rb:43:in `set_todo'
+  [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1 AND "items"."id" = $2 LIMIT $3[0m  [["todo_id", 2], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/items_controller.rb:47:in `set_todo_item'
+[31mUnpermitted parameters: :todo_id, :id, :item[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/items_controller.rb:26:in `update'
+  [1m[36mItem Update (0.4ms)[0m  [1m[33mUPDATE "items" SET "done" = $1, "updated_at" = $2 WHERE "items"."id" = $3[0m  [["done", true], ["updated_at", "2021-03-25 20:43:32.257546"], ["id", 1]]
+  ↳ app/controllers/items_controller.rb:26:in `update'
+  [1m[36mTRANSACTION (20.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/items_controller.rb:26:in `update'
+Completed 204 No Content in 31ms (ActiveRecord: 21.6ms | Allocations: 2797)
+
+
+Started GET "/todos/2/items" for ::1 at 2021-03-25 22:44:08 +0200
+Processing by ItemsController#index as HTML
+  Parameters: {"todo_id"=>"2"}
+  [1m[36mTodo Load (0.4ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/items_controller.rb:43:in `set_todo'
+  [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 2]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+Completed 200 OK in 6ms (Views: 2.2ms | ActiveRecord: 0.8ms | Allocations: 1237)
+
+
+Started POST "/todos/2/items" for 127.0.0.1 at 2021-03-25 22:45:19 +0200
+Processing by ItemsController#create as */*
+  Parameters: {"name"=>"Write the Rails 6 API", "done"=>"false", "todo_id"=>"2", "item"=>{"name"=>"Write the Rails 6 API", "done"=>"false"}}
+  [1m[36mTodo Load (0.4ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/items_controller.rb:43:in `set_todo'
+[31mUnpermitted parameters: :todo_id, :item[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/items_controller.rb:20:in `create'
+  [1m[36mItem Create (0.9ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Write the Rails 6 API"], ["done", false], ["todo_id", 2], ["created_at", "2021-03-25 20:45:19.028546"], ["updated_at", "2021-03-25 20:45:19.028546"]]
+  ↳ app/controllers/items_controller.rb:20:in `create'
+  [1m[36mTRANSACTION (18.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/items_controller.rb:20:in `create'
+Completed 201 Created in 32ms (Views: 0.6ms | ActiveRecord: 20.2ms | Allocations: 2586)
+
+
+Started GET "/todos/2/items" for ::1 at 2021-03-25 22:45:33 +0200
+Processing by ItemsController#index as HTML
+  Parameters: {"todo_id"=>"2"}
+  [1m[36mTodo Load (0.4ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/items_controller.rb:43:in `set_todo'
+  [1m[36mItem Load (0.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 2]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+Completed 200 OK in 6ms (Views: 2.6ms | ActiveRecord: 0.7ms | Allocations: 1326)
+
+
+Started DELETE "/todos/2/items/1" for 127.0.0.1 at 2021-03-25 22:46:29 +0200
+Processing by ItemsController#destroy as */*
+  Parameters: {"todo_id"=>"2", "id"=>"1", "item"=>{}}
+  [1m[36mTodo Load (0.2ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/items_controller.rb:43:in `set_todo'
+  [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1 AND "items"."id" = $2 LIMIT $3[0m  [["todo_id", 2], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/items_controller.rb:47:in `set_todo_item'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/items_controller.rb:32:in `destroy'
+  [1m[36mItem Destroy (0.4ms)[0m  [1m[31mDELETE FROM "items" WHERE "items"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/items_controller.rb:32:in `destroy'
+  [1m[36mTRANSACTION (19.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/items_controller.rb:32:in `destroy'
+Completed 204 No Content in 28ms (ActiveRecord: 20.1ms | Allocations: 2391)
+
+
+Started GET "/todos/2/items" for ::1 at 2021-03-25 22:48:36 +0200
+Processing by ItemsController#index as HTML
+  Parameters: {"todo_id"=>"2"}
+  [1m[36mTodo Load (0.4ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/items_controller.rb:43:in `set_todo'
+  [1m[36mItem Load (0.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 2]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 0.8ms | Allocations: 1236)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2977077618344736900)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20210325205422)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (427.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "email" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210325205422"]]
+  [1m[36mTRANSACTION (25.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(2977077618344736900)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (603.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "todoss_api_test"[0m
+  [1m[35m (1264.6ms)[0m  [1m[35mCREATE DATABASE "todoss_api_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "items" CASCADE[0m
+  [1m[35m (265.3ms)[0m  [1m[35mCREATE TABLE "items" ("id" bigserial primary key, "name" character varying, "done" boolean, "todo_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (74.1ms)[0m  [1m[35mCREATE INDEX "index_items_on_todo_id" ON "items" ("todo_id")[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "todos" CASCADE[0m
+  [1m[35m (130.8ms)[0m  [1m[35mCREATE TABLE "todos" ("id" bigserial primary key, "title" character varying, "created_by" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (128.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "email" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (9.5ms)[0m  [1m[35mALTER TABLE "items" ADD CONSTRAINT "fk_rails_c01e6b449d"
+FOREIGN KEY ("todo_id")
+  REFERENCES "todos" ("id")
+[0m
+  [1m[35m (118.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (5.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210325205422)[0m
+  [1m[35m (9.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210325175624),
+(20210325175650);
+
+[0m
+  [1m[35m (107.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-03-25 20:55:32.796870"], ["updated_at", "2021-03-25 20:55:32.796870"]]
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.4ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2021-03-25 20:55:32.811572"], ["key", "environment"]]
+  [1m[36mTRANSACTION (12.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "8ab988d4e97110252dad46ebab7ecfbff7e1ee09"], ["created_at", "2021-03-25 20:55:32.833688"], ["updated_at", "2021-03-25 20:55:32.833688"]]
+  [1m[36mTRANSACTION (10.4ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/todos/2/items" for ::1 at 2021-03-26 00:56:41 +0200
+  [1m[35m (33.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ItemsController#index as HTML
+  Parameters: {"todo_id"=>"2"}
+  [1m[36mTodo Load (64.9ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/items_controller.rb:43:in `set_todo'
+  [1m[36mItem Load (31.2ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 2]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+Completed 200 OK in 5828ms (Views: 690.0ms | ActiveRecord: 104.1ms | Allocations: 7007)
+
+
+Started GET "/todos/2/items" for ::1 at 2021-03-26 01:20:47 +0200
+Processing by ItemsController#index as HTML
+  Parameters: {"todo_id"=>"2"}
+  [1m[36mTodo Load (0.6ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/items_controller.rb:43:in `set_todo'
+  [1m[36mItem Load (0.5ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 2]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+Completed 200 OK in 91ms (Views: 7.6ms | ActiveRecord: 21.6ms | Allocations: 3343)
+
+
+Started GET "/todos/2/items" for ::1 at 2021-03-26 01:32:30 +0200
+Processing by ItemsController#index as HTML
+  Parameters: {"todo_id"=>"2"}
+  [1m[36mTodo Load (0.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/items_controller.rb:43:in `set_todo'
+  [1m[36mItem Load (0.7ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 2]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+Completed 200 OK in 49ms (Views: 4.9ms | ActiveRecord: 9.7ms | Allocations: 3342)
+
+
+Started GET "/todos" for ::1 at 2021-03-26 02:32:14 +0200
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TodosController#index as HTML
+Completed 422 Unprocessable Entity in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 403)
+
+
+Started GET "/todos" for ::1 at 2021-03-26 03:20:40 +0200
+  
+Zeitwerk::NameError (expected file /home/oksana/todoss-api/app/controllers/v1/todos_controller.rb to define constant V1::TodosController, but didn't):
+  
+zeitwerk (2.4.2) lib/zeitwerk/loader/callbacks.rb:18:in `on_file_autoloaded'
+zeitwerk (2.4.2) lib/zeitwerk/kernel.rb:27:in `block in require'
+zeitwerk (2.4.2) lib/zeitwerk/kernel.rb:26:in `tap'
+zeitwerk (2.4.2) lib/zeitwerk/kernel.rb:26:in `require'
+activesupport (6.1.3) lib/active_support/inflector/methods.rb:288:in `const_get'
+activesupport (6.1.3) lib/active_support/inflector/methods.rb:288:in `block in constantize'
+activesupport (6.1.3) lib/active_support/inflector/methods.rb:284:in `each'
+activesupport (6.1.3) lib/active_support/inflector/methods.rb:284:in `inject'
+activesupport (6.1.3) lib/active_support/inflector/methods.rb:284:in `constantize'
+activesupport (6.1.3) lib/active_support/dependencies/zeitwerk_integration.rb:19:in `constantize'
+actionpack (6.1.3) lib/action_dispatch/http/request.rb:93:in `controller_class_for'
+actionpack (6.1.3) lib/action_dispatch/request/utils.rb:95:in `action_encoding_template'
+actionpack (6.1.3) lib/action_dispatch/request/utils.rb:83:in `encode'
+actionpack (6.1.3) lib/action_dispatch/request/utils.rb:45:in `set_binary_encoding'
+actionpack (6.1.3) lib/action_dispatch/http/parameters.rb:68:in `path_parameters='
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:48:in `block in serve'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.3) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.3) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.1.3) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.3) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.3) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.3) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.3) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.3) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.3) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.3) lib/rails/engine.rb:539:in `call'
+puma (5.2.2) lib/puma/configuration.rb:248:in `call'
+puma (5.2.2) lib/puma/request.rb:76:in `block in handle_request'
+puma (5.2.2) lib/puma/thread_pool.rb:337:in `with_force_shutdown'
+puma (5.2.2) lib/puma/request.rb:75:in `handle_request'
+puma (5.2.2) lib/puma/server.rb:431:in `process_client'
+puma (5.2.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Started GET "/" for ::1 at 2021-03-26 22:57:47 +0200
+  [1m[35m (43.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/oksana/.rbenv/versions/2.7.2/lib/ruby/gems/2.7.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/oksana/.rbenv/versions/2.7.2/lib/ruby/gems/2.7.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 34.9ms | Allocations: 293)
+Completed 200 OK in 207ms (Views: 46.5ms | ActiveRecord: 0.0ms | Allocations: 2267)
+
+
+Started GET "/favicon.ico" for ::1 at 2021-03-26 22:57:49 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/signup" for ::1 at 2021-03-26 22:58:43 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/signup"):
+  
+Started GET "/users/signup" for ::1 at 2021-03-26 22:59:01 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/users/signup"):
+  
+Started GET "/auth/login" for ::1 at 2021-03-26 23:03:05 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/auth/login"):
+  
+Started GET "/users/1" for ::1 at 2021-03-26 23:03:23 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/users/1"):
+  
+  [1m[36mUser Load (22.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" DESC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (99.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Oksana"], ["email", "oksana@mail"], ["password_digest", "$2a$12$swyuoW4z5QZOth8aP5APberMcuHUqrxLVGuYuqAX9WWQFy0v60UKi"], ["created_at", "2021-03-26 21:05:37.446596"], ["updated_at", "2021-03-26 21:05:37.446596"]]
+  [1m[36mTRANSACTION (47.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/api/v1/books" for ::1 at 2021-03-26 23:11:17 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/books"):
+  
+Started GET "/api/v1/todos" for ::1 at 2021-03-26 23:11:25 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/todos"):
+  
+Started GET "/v1/todos" for ::1 at 2021-03-26 23:11:39 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/v1/todos"):
+  
+Started POST "/auth/sign_up" for 127.0.0.1 at 2021-03-26 23:32:29 +0200
+  
+ActionController::RoutingError (No route matches [POST] "/auth/sign_up"):
+  
+Started POST "/signup" for 127.0.0.1 at 2021-03-26 23:42:14 +0200
+Processing by UsersController#create as */*
+  Parameters: {"{    \"name\": \"Oksana\",\n    \"email\": \"oksana@gmail.com\",\n    \"password\": \"11111111\",\n    \"password_confirmation\": \"11111111\"}"=>"[FILTERED]"}
+[31mUnpermitted parameter: :{    "name": "Oksana",
+    "email": "oksana@gmail.com",
+    "password": "11111111",
+    "password_confirmation": "11111111"}[0m
+Completed 422 Unprocessable Entity in 52ms (Views: 0.3ms | ActiveRecord: 11.6ms | Allocations: 10857)
+
+
+Started POST "/signup" for 127.0.0.1 at 2021-03-26 23:43:00 +0200
+Processing by UsersController#create as */*
+  Parameters: {"{    \"name\": \"Oksana\",\n    \"email\": \"oksana@gmail.com\",\n    \"password\": \"11111111\",\n    \"password_digest\": \"11111111\"}"=>"[FILTERED]"}
+[31mUnpermitted parameter: :{    "name": "Oksana",
+    "email": "oksana@gmail.com",
+    "password": "11111111",
+    "password_digest": "11111111"}[0m
+Completed 422 Unprocessable Entity in 4ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 2002)
+
+
+Started POST "/signup" for 127.0.0.1 at 2021-03-26 23:44:44 +0200
+Processing by UsersController#create as */*
+Completed 422 Unprocessable Entity in 6ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 1970)
+
+
+Started POST "/signup" for 127.0.0.1 at 2021-03-26 23:50:25 +0200
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"Oksana2", "email"=>"oksana2@mail", "password"=>"[FILTERED]", "password_digest"=>"[FILTERED]", "user"=>{"name"=>"Oksana2", "email"=>"oksana2@mail", "password_digest"=>"[FILTERED]"}}
+[31mUnpermitted parameters: :password_digest, :user[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Oksana2"], ["email", "oksana2@mail"], ["password_digest", "$2a$12$daVOFbiixvXRJqzHtZs4pOxHIzl/ESocJAC4lC7SfiUpiiNQFJt4y"], ["created_at", "2021-03-26 21:50:25.354949"], ["updated_at", "2021-03-26 21:50:25.354949"]]
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mTRANSACTION (35.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:9:in `create'
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "oksana2@mail"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "oksana2@mail"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+Completed 201 Created in 859ms (Views: 0.2ms | ActiveRecord: 45.3ms | Allocations: 6976)
+
+
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Laura"], ["email", "laura@mail"], ["password_digest", "11111111"], ["created_at", "2021-03-26 22:02:09.745957"], ["updated_at", "2021-03-26 22:02:09.745957"]]
+  [1m[36mTRANSACTION (9.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Started POST "/auth/login?email=oksana2@mail&password=[FILTERED]" for 127.0.0.1 at 2021-03-27 00:05:19 +0200
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"oksana2@mail", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "oksana2@mail"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "oksana2@mail"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+Completed 200 OK in 541ms (Views: 0.3ms | ActiveRecord: 6.5ms | Allocations: 3191)
+
+
+Started GET "/v1/todos" for ::1 at 2021-03-27 00:06:43 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/v1/todos"):
+  
+Started GET "/auth/login" for ::1 at 2021-03-27 00:07:01 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/auth/login"):
+  
+Started GET "/auth/login?email=oksana2@mail&password=[FILTERED]" for ::1 at 2021-03-27 00:07:48 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/auth/login"):
+  
+Started GET "/favicon.ico" for ::1 at 2021-03-27 00:07:49 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/v1/todos" for ::1 at 2021-03-27 00:08:35 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/v1/todos"):
+  
+Started POST "/auth/login?email=oksana2@mail&password=[FILTERED]" for 127.0.0.1 at 2021-03-27 00:14:04 +0200
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"oksana2@mail", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "oksana2@mail"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "oksana2@mail"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+Completed 200 OK in 536ms (Views: 0.2ms | ActiveRecord: 10.3ms | Allocations: 3194)
+
+
+Started GET "/v1/todos" for 127.0.0.1 at 2021-03-27 00:19:24 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/v1/todos"):
+  
+Started GET "/v2/todos" for 127.0.0.1 at 2021-03-27 00:21:26 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/v2/todos"):
+  
+Started GET "/v2/todos" for 127.0.0.1 at 2021-03-27 00:24:17 +0200
+Processing by V2::TodosController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 200 OK in 57ms (Views: 0.2ms | ActiveRecord: 9.9ms | Allocations: 6165)
+
+
+Started GET "/v1/todos" for ::1 at 2021-03-27 00:24:33 +0200
+Processing by V1::TodosController#index as HTML
+Completed 422 Unprocessable Entity in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 179)
+
+
+Started GET "/v2/todos" for ::1 at 2021-03-27 00:24:55 +0200
+Processing by V2::TodosController#index as HTML
+Completed 422 Unprocessable Entity in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 84)
+
+
+Started GET "/api/v1/recipes/3/favorite" for ::1 at 2021-03-27 00:26:02 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/recipes/3/favorite"):
+  
+Started GET "/v1/todos" for 127.0.0.1 at 2021-03-27 00:31:29 +0200
+Processing by V1::TodosController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mTodo Load (11.1ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."created_by" = $1[0m  [["created_by", "2"]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+Completed 200 OK in 286ms (Views: 31.7ms | ActiveRecord: 126.9ms | Allocations: 9602)
+
+
+Started GET "/v1/todos" for 127.0.0.1 at 2021-03-27 00:33:24 +0200
+Processing by V1::TodosController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mTodo Load (0.4ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."created_by" = $1[0m  [["created_by", "2"]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+Completed 200 OK in 7ms (Views: 3.2ms | ActiveRecord: 0.8ms | Allocations: 1521)
+
+
+Started GET "/v1/todos" for 127.0.0.1 at 2021-03-27 00:33:32 +0200
+Processing by V1::TodosController#index as */*
+Completed 422 Unprocessable Entity in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 87)
+
+
+Started GET "/v2/todos" for 127.0.0.1 at 2021-03-27 00:35:25 +0200
+Processing by V2::TodosController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 624)
+
+
+Started GET "/v1/todos?eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2MTY4ODMyNDV9.JmjYilI4Ss3Pz7PcI2iFxJ7oIxvb2zE0WvfMiUaP1Lg" for ::1 at 2021-03-27 00:41:13 +0200
+Processing by V1::TodosController#index as HTML
+  Parameters: {"eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2MTY4ODMyNDV9.JmjYilI4Ss3Pz7PcI2iFxJ7oIxvb2zE0WvfMiUaP1Lg"=>nil}
+Completed 422 Unprocessable Entity in 1ms (Views: 0.4ms | Allocations: 84)
+
+
+Started GET "/v1/todos" for 127.0.0.1 at 2021-03-27 00:44:04 +0200
+Processing by V1::TodosController#index as */*
+Completed 422 Unprocessable Entity in 0ms (Views: 0.3ms | Allocations: 87)
+
+
+Started GET "/v1/todos" for 127.0.0.1 at 2021-03-27 00:44:37 +0200
+Processing by V1::TodosController#index as */*
+Completed 422 Unprocessable Entity in 1ms (Views: 0.3ms | Allocations: 87)
+
+
+Started GET "/v1/todos" for 127.0.0.1 at 2021-03-27 00:44:48 +0200
+Processing by V1::TodosController#index as */*
+Completed 422 Unprocessable Entity in 1ms (Views: 0.2ms | Allocations: 87)
+
+
+Started GET "/v1/todos" for 127.0.0.1 at 2021-03-27 00:45:28 +0200
+Processing by V1::TodosController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mTodo Load (0.4ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."created_by" = $1[0m  [["created_by", "2"]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+Completed 200 OK in 19ms (Views: 3.1ms | ActiveRecord: 6.5ms | Allocations: 3612)
+
+
+Started GET "/v1/todos?eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2MTY4ODMyNDV9.JmjYilI4Ss3Pz7PcI2iFxJ7oIxvb2zE0WvfMiUaP1Lg" for ::1 at 2021-03-27 00:45:36 +0200
+Processing by V1::TodosController#index as HTML
+  Parameters: {"eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2MTY4ODMyNDV9.JmjYilI4Ss3Pz7PcI2iFxJ7oIxvb2zE0WvfMiUaP1Lg"=>nil}
+Completed 422 Unprocessable Entity in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 84)
+
+
+Started GET "/v1/todos" for ::1 at 2021-03-27 00:45:44 +0200
+Processing by V1::TodosController#index as HTML
+Completed 422 Unprocessable Entity in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 84)
+
+
+Started GET "/v1/todos" for ::1 at 2021-03-27 00:45:47 +0200
+Processing by V1::TodosController#index as HTML
+Completed 422 Unprocessable Entity in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 84)
+
+
+Started GET "/v1/todos" for ::1 at 2021-03-27 00:48:51 +0200
+  
+ArgumentError (Before process_action callback :verify_authenticity_token has not been defined):
+  
+app/controllers/v1/todos_controller.rb:5:in `<class:TodosController>'
+app/controllers/v1/todos_controller.rb:4:in `<module:V1>'
+app/controllers/v1/todos_controller.rb:3:in `<main>'
+Started GET "/v1/todos" for ::1 at 2021-03-27 00:51:21 +0200
+  
+ArgumentError (Before process_action callback :verify_authenticity_token has not been defined):
+  
+app/controllers/v1/todos_controller.rb:5:in `<class:TodosController>'
+app/controllers/v1/todos_controller.rb:4:in `<module:V1>'
+app/controllers/v1/todos_controller.rb:3:in `<main>'
+Started GET "/v1/todos" for ::1 at 2021-03-27 00:51:38 +0200
+Processing by V1::TodosController#index as HTML
+Completed 422 Unprocessable Entity in 71ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 320)
+
+
+Started GET "/application/vnd.todos.v1+json/todos" for 127.0.0.1 at 2021-03-27 01:03:25 +0200
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/application/vnd.todos.v1+json/todos"):
+  
+Started GET "/application/vnd.todos.v1+json/todos" for 127.0.0.1 at 2021-03-27 01:03:31 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/application/vnd.todos.v1+json/todos"):
+  
+Started GET "/application/vnd.todos.v1+json/todos" for 127.0.0.1 at 2021-03-27 01:04:22 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/application/vnd.todos.v1+json/todos"):
+  
+Started GET "/v1/json/todos" for 127.0.0.1 at 2021-03-27 01:05:25 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/v1/json/todos"):
+  
+Started GET "/v1/todos" for 127.0.0.1 at 2021-03-27 01:06:45 +0200
+Processing by V1::TodosController#index as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mTodo Load (0.9ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."created_by" = $1 LIMIT $2 OFFSET $3[0m  [["created_by", "2"], ["LIMIT", 20], ["OFFSET", 0]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers]   [1m[36mItem Load (69.2ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 3]]
+[active_model_serializers]   ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers]   [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 4]]
+[active_model_serializers]   ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers]   [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 5]]
+[active_model_serializers]   ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (133.48ms)
+Completed 200 OK in 687ms (Views: 285.6ms | ActiveRecord: 158.6ms | Allocations: 22019)
+
+
+Started GET "/v1/todos" for ::1 at 2021-03-27 01:07:04 +0200
+Processing by V1::TodosController#index as HTML
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.18ms)
+Completed 422 Unprocessable Entity in 24ms (Views: 22.9ms | ActiveRecord: 0.0ms | Allocations: 627)
+
+
+Started GET "/v1/todos" for ::1 at 2021-03-27 01:07:07 +0200
+Processing by V1::TodosController#index as HTML
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.07ms)
+Completed 422 Unprocessable Entity in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 160)
+
+
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (64.7ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "alias"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:14.600522"], ["updated_at", "2021-03-26 23:11:14.600522"]]
+  [1m[36mTRANSACTION (29.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (162.1ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "nihil"], ["done", false], ["todo_id", 6], ["created_at", "2021-03-26 23:11:14.757340"], ["updated_at", "2021-03-26 23:11:14.757340"]]
+  [1m[36mTRANSACTION (27.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.4ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "ut"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:14.957041"], ["updated_at", "2021-03-26 23:11:14.957041"]]
+  [1m[36mTRANSACTION (11.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "quia"], ["done", false], ["todo_id", 7], ["created_at", "2021-03-26 23:11:14.977410"], ["updated_at", "2021-03-26 23:11:14.977410"]]
+  [1m[36mTRANSACTION (12.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.4ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "alias"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.000239"], ["updated_at", "2021-03-26 23:11:15.000239"]]
+  [1m[36mTRANSACTION (12.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.7ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "dignissimos"], ["done", false], ["todo_id", 8], ["created_at", "2021-03-26 23:11:15.020828"], ["updated_at", "2021-03-26 23:11:15.020828"]]
+  [1m[36mTRANSACTION (12.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "exercitationem"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.044491"], ["updated_at", "2021-03-26 23:11:15.044491"]]
+  [1m[36mTRANSACTION (11.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.7ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "quam"], ["done", false], ["todo_id", 9], ["created_at", "2021-03-26 23:11:15.065041"], ["updated_at", "2021-03-26 23:11:15.065041"]]
+  [1m[36mTRANSACTION (14.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (17.7ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "reprehenderit"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.088956"], ["updated_at", "2021-03-26 23:11:15.088956"]]
+  [1m[36mTRANSACTION (60.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.6ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "rerum"], ["done", false], ["todo_id", 10], ["created_at", "2021-03-26 23:11:15.175420"], ["updated_at", "2021-03-26 23:11:15.175420"]]
+  [1m[36mTRANSACTION (12.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.4ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "blanditiis"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.198556"], ["updated_at", "2021-03-26 23:11:15.198556"]]
+  [1m[36mTRANSACTION (13.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "veniam"], ["done", false], ["todo_id", 11], ["created_at", "2021-03-26 23:11:15.217969"], ["updated_at", "2021-03-26 23:11:15.217969"]]
+  [1m[36mTRANSACTION (14.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.3ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "facilis"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.242404"], ["updated_at", "2021-03-26 23:11:15.242404"]]
+  [1m[36mTRANSACTION (14.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.7ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "atque"], ["done", false], ["todo_id", 12], ["created_at", "2021-03-26 23:11:15.262842"], ["updated_at", "2021-03-26 23:11:15.262842"]]
+  [1m[36mTRANSACTION (14.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "omnis"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.286988"], ["updated_at", "2021-03-26 23:11:15.286988"]]
+  [1m[36mTRANSACTION (11.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.7ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "consequatur"], ["done", false], ["todo_id", 13], ["created_at", "2021-03-26 23:11:15.307195"], ["updated_at", "2021-03-26 23:11:15.307195"]]
+  [1m[36mTRANSACTION (12.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "similique"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.331197"], ["updated_at", "2021-03-26 23:11:15.331197"]]
+  [1m[36mTRANSACTION (12.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.6ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "adipisci"], ["done", false], ["todo_id", 14], ["created_at", "2021-03-26 23:11:15.350221"], ["updated_at", "2021-03-26 23:11:15.350221"]]
+  [1m[36mTRANSACTION (5.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "quasi"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.363826"], ["updated_at", "2021-03-26 23:11:15.363826"]]
+  [1m[36mTRANSACTION (12.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "alias"], ["done", false], ["todo_id", 15], ["created_at", "2021-03-26 23:11:15.383674"], ["updated_at", "2021-03-26 23:11:15.383674"]]
+  [1m[36mTRANSACTION (14.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.6ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "distinctio"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.408611"], ["updated_at", "2021-03-26 23:11:15.408611"]]
+  [1m[36mTRANSACTION (11.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "totam"], ["done", false], ["todo_id", 16], ["created_at", "2021-03-26 23:11:15.428461"], ["updated_at", "2021-03-26 23:11:15.428461"]]
+  [1m[36mTRANSACTION (12.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.6ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "omnis"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.453155"], ["updated_at", "2021-03-26 23:11:15.453155"]]
+  [1m[36mTRANSACTION (10.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "dolor"], ["done", false], ["todo_id", 17], ["created_at", "2021-03-26 23:11:15.471672"], ["updated_at", "2021-03-26 23:11:15.471672"]]
+  [1m[36mTRANSACTION (13.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.4ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "temporibus"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.496319"], ["updated_at", "2021-03-26 23:11:15.496319"]]
+  [1m[36mTRANSACTION (12.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.8ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "non"], ["done", false], ["todo_id", 18], ["created_at", "2021-03-26 23:11:15.516756"], ["updated_at", "2021-03-26 23:11:15.516756"]]
+  [1m[36mTRANSACTION (11.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "necessitatibus"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.540349"], ["updated_at", "2021-03-26 23:11:15.540349"]]
+  [1m[36mTRANSACTION (9.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.7ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "voluptates"], ["done", false], ["todo_id", 19], ["created_at", "2021-03-26 23:11:15.570939"], ["updated_at", "2021-03-26 23:11:15.570939"]]
+  [1m[36mTRANSACTION (14.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "et"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.595053"], ["updated_at", "2021-03-26 23:11:15.595053"]]
+  [1m[36mTRANSACTION (12.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "qui"], ["done", false], ["todo_id", 20], ["created_at", "2021-03-26 23:11:15.616135"], ["updated_at", "2021-03-26 23:11:15.616135"]]
+  [1m[36mTRANSACTION (12.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.4ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "similique"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.639803"], ["updated_at", "2021-03-26 23:11:15.639803"]]
+  [1m[36mTRANSACTION (12.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "aliquid"], ["done", false], ["todo_id", 21], ["created_at", "2021-03-26 23:11:15.658926"], ["updated_at", "2021-03-26 23:11:15.658926"]]
+  [1m[36mTRANSACTION (14.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.6ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "et"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.682869"], ["updated_at", "2021-03-26 23:11:15.682869"]]
+  [1m[36mTRANSACTION (12.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.6ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "repellat"], ["done", false], ["todo_id", 22], ["created_at", "2021-03-26 23:11:15.702913"], ["updated_at", "2021-03-26 23:11:15.702913"]]
+  [1m[36mTRANSACTION (13.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "perspiciatis"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.727455"], ["updated_at", "2021-03-26 23:11:15.727455"]]
+  [1m[36mTRANSACTION (11.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "vero"], ["done", false], ["todo_id", 23], ["created_at", "2021-03-26 23:11:15.746206"], ["updated_at", "2021-03-26 23:11:15.746206"]]
+  [1m[36mTRANSACTION (14.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "quidem"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.771694"], ["updated_at", "2021-03-26 23:11:15.771694"]]
+  [1m[36mTRANSACTION (12.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "rem"], ["done", false], ["todo_id", 24], ["created_at", "2021-03-26 23:11:15.791134"], ["updated_at", "2021-03-26 23:11:15.791134"]]
+  [1m[36mTRANSACTION (14.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "eligendi"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.814832"], ["updated_at", "2021-03-26 23:11:15.814832"]]
+  [1m[36mTRANSACTION (12.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.9ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "qui"], ["done", false], ["todo_id", 25], ["created_at", "2021-03-26 23:11:15.835074"], ["updated_at", "2021-03-26 23:11:15.835074"]]
+  [1m[36mTRANSACTION (14.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.6ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "consectetur"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.859001"], ["updated_at", "2021-03-26 23:11:15.859001"]]
+  [1m[36mTRANSACTION (12.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.6ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "accusantium"], ["done", false], ["todo_id", 26], ["created_at", "2021-03-26 23:11:15.880162"], ["updated_at", "2021-03-26 23:11:15.880162"]]
+  [1m[36mTRANSACTION (11.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.6ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "voluptatem"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.904007"], ["updated_at", "2021-03-26 23:11:15.904007"]]
+  [1m[36mTRANSACTION (12.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "quo"], ["done", false], ["todo_id", 27], ["created_at", "2021-03-26 23:11:15.922965"], ["updated_at", "2021-03-26 23:11:15.922965"]]
+  [1m[36mTRANSACTION (14.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "aut"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.947746"], ["updated_at", "2021-03-26 23:11:15.947746"]]
+  [1m[36mTRANSACTION (12.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.6ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "dolorum"], ["done", false], ["todo_id", 28], ["created_at", "2021-03-26 23:11:15.968134"], ["updated_at", "2021-03-26 23:11:15.968134"]]
+  [1m[36mTRANSACTION (11.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "autem"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:15.991983"], ["updated_at", "2021-03-26 23:11:15.991983"]]
+  [1m[36mTRANSACTION (12.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "doloribus"], ["done", false], ["todo_id", 29], ["created_at", "2021-03-26 23:11:16.011891"], ["updated_at", "2021-03-26 23:11:16.011891"]]
+  [1m[36mTRANSACTION (13.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "eveniet"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.035229"], ["updated_at", "2021-03-26 23:11:16.035229"]]
+  [1m[36mTRANSACTION (11.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.6ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "assumenda"], ["done", false], ["todo_id", 30], ["created_at", "2021-03-26 23:11:16.055387"], ["updated_at", "2021-03-26 23:11:16.055387"]]
+  [1m[36mTRANSACTION (14.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "necessitatibus"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.079463"], ["updated_at", "2021-03-26 23:11:16.079463"]]
+  [1m[36mTRANSACTION (11.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.6ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "quos"], ["done", false], ["todo_id", 31], ["created_at", "2021-03-26 23:11:16.099063"], ["updated_at", "2021-03-26 23:11:16.099063"]]
+  [1m[36mTRANSACTION (13.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.6ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "porro"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.125230"], ["updated_at", "2021-03-26 23:11:16.125230"]]
+  [1m[36mTRANSACTION (10.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "quis"], ["done", false], ["todo_id", 32], ["created_at", "2021-03-26 23:11:16.142705"], ["updated_at", "2021-03-26 23:11:16.142705"]]
+  [1m[36mTRANSACTION (14.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "perspiciatis"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.167890"], ["updated_at", "2021-03-26 23:11:16.167890"]]
+  [1m[36mTRANSACTION (11.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.6ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "vero"], ["done", false], ["todo_id", 33], ["created_at", "2021-03-26 23:11:16.186729"], ["updated_at", "2021-03-26 23:11:16.186729"]]
+  [1m[36mTRANSACTION (14.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.6ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "nihil"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.212653"], ["updated_at", "2021-03-26 23:11:16.212653"]]
+  [1m[36mTRANSACTION (11.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "cupiditate"], ["done", false], ["todo_id", 34], ["created_at", "2021-03-26 23:11:16.230751"], ["updated_at", "2021-03-26 23:11:16.230751"]]
+  [1m[36mTRANSACTION (14.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.4ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "et"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.255341"], ["updated_at", "2021-03-26 23:11:16.255341"]]
+  [1m[36mTRANSACTION (13.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "quasi"], ["done", false], ["todo_id", 35], ["created_at", "2021-03-26 23:11:16.276392"], ["updated_at", "2021-03-26 23:11:16.276392"]]
+  [1m[36mTRANSACTION (12.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.4ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "magnam"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.299331"], ["updated_at", "2021-03-26 23:11:16.299331"]]
+  [1m[36mTRANSACTION (12.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "dicta"], ["done", false], ["todo_id", 36], ["created_at", "2021-03-26 23:11:16.320050"], ["updated_at", "2021-03-26 23:11:16.320050"]]
+  [1m[36mTRANSACTION (13.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.4ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "eveniet"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.344135"], ["updated_at", "2021-03-26 23:11:16.344135"]]
+  [1m[36mTRANSACTION (11.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.6ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "qui"], ["done", false], ["todo_id", 37], ["created_at", "2021-03-26 23:11:16.362838"], ["updated_at", "2021-03-26 23:11:16.362838"]]
+  [1m[36mTRANSACTION (14.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.6ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "quia"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.388250"], ["updated_at", "2021-03-26 23:11:16.388250"]]
+  [1m[36mTRANSACTION (11.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.6ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "aut"], ["done", false], ["todo_id", 38], ["created_at", "2021-03-26 23:11:16.406810"], ["updated_at", "2021-03-26 23:11:16.406810"]]
+  [1m[36mTRANSACTION (14.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "voluptatem"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.431776"], ["updated_at", "2021-03-26 23:11:16.431776"]]
+  [1m[36mTRANSACTION (12.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.4ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "soluta"], ["done", false], ["todo_id", 39], ["created_at", "2021-03-26 23:11:16.452041"], ["updated_at", "2021-03-26 23:11:16.452041"]]
+  [1m[36mTRANSACTION (13.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (1.7ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "sint"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.476682"], ["updated_at", "2021-03-26 23:11:16.476682"]]
+  [1m[36mTRANSACTION (8.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.6ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "et"], ["done", false], ["todo_id", 40], ["created_at", "2021-03-26 23:11:16.494890"], ["updated_at", "2021-03-26 23:11:16.494890"]]
+  [1m[36mTRANSACTION (4.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (1.1ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "unde"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.507578"], ["updated_at", "2021-03-26 23:11:16.507578"]]
+  [1m[36mTRANSACTION (14.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.6ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "dicta"], ["done", false], ["todo_id", 41], ["created_at", "2021-03-26 23:11:16.529750"], ["updated_at", "2021-03-26 23:11:16.529750"]]
+  [1m[36mTRANSACTION (13.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "voluptas"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.551993"], ["updated_at", "2021-03-26 23:11:16.551993"]]
+  [1m[36mTRANSACTION (12.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.7ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "ut"], ["done", false], ["todo_id", 42], ["created_at", "2021-03-26 23:11:16.573076"], ["updated_at", "2021-03-26 23:11:16.573076"]]
+  [1m[36mTRANSACTION (11.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.6ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "id"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.596343"], ["updated_at", "2021-03-26 23:11:16.596343"]]
+  [1m[36mTRANSACTION (11.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "ipsum"], ["done", false], ["todo_id", 43], ["created_at", "2021-03-26 23:11:16.617681"], ["updated_at", "2021-03-26 23:11:16.617681"]]
+  [1m[36mTRANSACTION (13.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "hic"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.640465"], ["updated_at", "2021-03-26 23:11:16.640465"]]
+  [1m[36mTRANSACTION (12.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.4ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "saepe"], ["done", false], ["todo_id", 44], ["created_at", "2021-03-26 23:11:16.660532"], ["updated_at", "2021-03-26 23:11:16.660532"]]
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.4ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "occaecati"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.672434"], ["updated_at", "2021-03-26 23:11:16.672434"]]
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "impedit"], ["done", false], ["todo_id", 45], ["created_at", "2021-03-26 23:11:16.682099"], ["updated_at", "2021-03-26 23:11:16.682099"]]
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.4ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "adipisci"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.694372"], ["updated_at", "2021-03-26 23:11:16.694372"]]
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "et"], ["done", false], ["todo_id", 46], ["created_at", "2021-03-26 23:11:16.703896"], ["updated_at", "2021-03-26 23:11:16.703896"]]
+  [1m[36mTRANSACTION (5.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.4ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "porro"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.716356"], ["updated_at", "2021-03-26 23:11:16.716356"]]
+  [1m[36mTRANSACTION (14.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.6ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "nobis"], ["done", false], ["todo_id", 47], ["created_at", "2021-03-26 23:11:16.737238"], ["updated_at", "2021-03-26 23:11:16.737238"]]
+  [1m[36mTRANSACTION (3.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "quam"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.750126"], ["updated_at", "2021-03-26 23:11:16.750126"]]
+  [1m[36mTRANSACTION (13.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.6ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "dolorem"], ["done", false], ["todo_id", 48], ["created_at", "2021-03-26 23:11:16.770830"], ["updated_at", "2021-03-26 23:11:16.770830"]]
+  [1m[36mTRANSACTION (14.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "dolor"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.796213"], ["updated_at", "2021-03-26 23:11:16.796213"]]
+  [1m[36mTRANSACTION (10.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.6ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "officiis"], ["done", false], ["todo_id", 49], ["created_at", "2021-03-26 23:11:16.813836"], ["updated_at", "2021-03-26 23:11:16.813836"]]
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.5ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "unde"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.827695"], ["updated_at", "2021-03-26 23:11:16.827695"]]
+  [1m[36mTRANSACTION (13.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "rerum"], ["done", false], ["todo_id", 50], ["created_at", "2021-03-26 23:11:16.848797"], ["updated_at", "2021-03-26 23:11:16.848797"]]
+  [1m[36mTRANSACTION (12.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.4ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "libero"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.870997"], ["updated_at", "2021-03-26 23:11:16.870997"]]
+  [1m[36mTRANSACTION (13.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "architecto"], ["done", false], ["todo_id", 51], ["created_at", "2021-03-26 23:11:16.891605"], ["updated_at", "2021-03-26 23:11:16.891605"]]
+  [1m[36mTRANSACTION (13.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.4ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "quibusdam"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.916953"], ["updated_at", "2021-03-26 23:11:16.916953"]]
+  [1m[36mTRANSACTION (12.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "sint"], ["done", false], ["todo_id", 52], ["created_at", "2021-03-26 23:11:16.935641"], ["updated_at", "2021-03-26 23:11:16.935641"]]
+  [1m[36mTRANSACTION (13.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.4ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "error"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:16.959215"], ["updated_at", "2021-03-26 23:11:16.959215"]]
+  [1m[36mTRANSACTION (12.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "numquam"], ["done", false], ["todo_id", 53], ["created_at", "2021-03-26 23:11:16.979555"], ["updated_at", "2021-03-26 23:11:16.979555"]]
+  [1m[36mTRANSACTION (13.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.4ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "dolores"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:17.003156"], ["updated_at", "2021-03-26 23:11:17.003156"]]
+  [1m[36mTRANSACTION (12.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.5ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "non"], ["done", false], ["todo_id", 54], ["created_at", "2021-03-26 23:11:17.023615"], ["updated_at", "2021-03-26 23:11:17.023615"]]
+  [1m[36mTRANSACTION (13.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mTodo Create (0.7ms)[0m  [1m[32mINSERT INTO "todos" ("title", "created_by", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["title", "amet"], ["created_by", "1"], ["created_at", "2021-03-26 23:11:17.047888"], ["updated_at", "2021-03-26 23:11:17.047888"]]
+  [1m[36mTRANSACTION (12.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Create (0.6ms)[0m  [1m[32mINSERT INTO "items" ("name", "done", "todo_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "facere"], ["done", false], ["todo_id", 55], ["created_at", "2021-03-26 23:11:17.068083"], ["updated_at", "2021-03-26 23:11:17.068083"]]
+  [1m[36mTRANSACTION (13.6ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/v1/todos" for 127.0.0.1 at 2021-03-27 01:11:47 +0200
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by V1::TodosController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mTodo Load (1.9ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."created_by" = $1 LIMIT $2 OFFSET $3[0m  [["created_by", "2"], ["LIMIT", 20], ["OFFSET", 0]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers]   [1m[36mItem Load (0.7ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 3]]
+[active_model_serializers]   ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers]   [1m[36mItem Load (0.5ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 4]]
+[active_model_serializers]   ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers]   [1m[36mItem Load (4.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 5]]
+[active_model_serializers]   ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (22.36ms)
+Completed 200 OK in 82ms (Views: 31.1ms | ActiveRecord: 21.8ms | Allocations: 19853)
+
+
+Started GET "/v1/todos" for 127.0.0.1 at 2021-03-27 01:12:31 +0200
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by V1::TodosController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mTodo Load (0.4ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."created_by" = $1 LIMIT $2 OFFSET $3[0m  [["created_by", "2"], ["LIMIT", 20], ["OFFSET", 0]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers]   [1m[36mItem Load (0.7ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 3]]
+[active_model_serializers]   ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers]   [1m[36mItem Load (0.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 4]]
+[active_model_serializers]   ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers]   [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 5]]
+[active_model_serializers]   ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (23.72ms)
+Completed 200 OK in 87ms (Views: 37.8ms | ActiveRecord: 14.5ms | Allocations: 19852)
+
+
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/v1/todos" for 127.0.0.1 at 2021-03-27 01:13:32 +0200
+Processing by V1::TodosController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mTodo Load (0.4ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."created_by" = $1 LIMIT $2 OFFSET $3[0m  [["created_by", "2"], ["LIMIT", 20], ["OFFSET", 0]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers]   [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 3]]
+[active_model_serializers]   ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers]   [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 4]]
+[active_model_serializers]   ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers]   [1m[36mItem Load (1.3ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 5]]
+[active_model_serializers]   ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (14.68ms)
+Completed 200 OK in 23ms (Views: 16.1ms | ActiveRecord: 2.7ms | Allocations: 4774)
+
+
+  [1m[36mTodo Load (0.6ms)[0m  [1m[34mSELECT "todos".* FROM "todos" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mTodo Load (0.9ms)[0m  [1m[34mSELECT "todos".* FROM "todos" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/api/v1/users" for ::1 at 2021-03-27 01:22:08 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/api/v1/users"):
+  
+  [1m[36mUser Load (77.4ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mTodo Load (15.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos" ORDER BY "todos"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos" ORDER BY "todos"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Load (42.5ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 2]]
+  [1m[36mItem Destroy (0.5ms)[0m  [1m[31mDELETE FROM "items" WHERE "items"."id" = $1[0m  [["id", 2]]
+  [1m[36mTodo Destroy (239.7ms)[0m  [1m[31mDELETE FROM "todos" WHERE "todos"."id" = $1[0m  [["id", 2]]
+  [1m[36mTRANSACTION (19.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos" ORDER BY "todos"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTodo Load (0.6ms)[0m  [1m[34mSELECT "todos".* FROM "todos" ORDER BY "todos"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 3]]
+  [1m[36mTodo Destroy (0.6ms)[0m  [1m[31mDELETE FROM "todos" WHERE "todos"."id" = $1[0m  [["id", 3]]
+  [1m[36mTRANSACTION (14.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTodo Load (0.6ms)[0m  [1m[34mSELECT "todos".* FROM "todos" ORDER BY "todos"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 4]]
+  [1m[36mTodo Destroy (0.7ms)[0m  [1m[31mDELETE FROM "todos" WHERE "todos"."id" = $1[0m  [["id", 4]]
+  [1m[36mTRANSACTION (14.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos" ORDER BY "todos"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Load (1.0ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 5]]
+  [1m[36mTodo Destroy (19.2ms)[0m  [1m[31mDELETE FROM "todos" WHERE "todos"."id" = $1[0m  [["id", 5]]
+  [1m[36mTRANSACTION (26.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTodo Load (0.5ms)[0m  [1m[34mSELECT "todos".* FROM "todos" ORDER BY "todos"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mItem Load (0.4ms)[0m  [1m[34mSELECT "items".* FROM "items" WHERE "items"."todo_id" = $1[0m  [["todo_id", 6]]
+  [1m[36mItem Destroy (0.5ms)[0m  [1m[31mDELETE FROM "items" WHERE "items"."id" = $1[0m  [["id", 3]]
+  [1m[36mTodo Destroy (0.7ms)[0m  [1m[31mDELETE FROM "todos" WHERE "todos"."id" = $1[0m  [["id", 6]]
+  [1m[36mTRANSACTION (33.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mItem Load (0.3ms)[0m  [1m[34mSELECT "items".* FROM "items" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Started POST "/auth/login?email=oksana2@mail&password=[FILTERED]" for 127.0.0.1 at 2021-03-27 19:26:56 +0200
+  [1m[35m (30.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"oksana2@mail", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "oksana2@mail"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "oksana2@mail"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 200 OK in 677ms (Views: 15.9ms | ActiveRecord: 6.2ms | Allocations: 9591)
+
+
+Started GET "/" for 127.0.0.1 at 2021-03-27 19:27:21 +0200
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/oksana/.rbenv/versions/2.7.2/lib/ruby/gems/2.7.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/oksana/.rbenv/versions/2.7.2/lib/ruby/gems/2.7.0/gems/railties-6.1.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 34.8ms | Allocations: 293)
+Completed 200 OK in 812ms (Views: 48.6ms | ActiveRecord: 0.0ms | Allocations: 2310)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2021-03-27 19:27:27 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/todos" for 127.0.0.1 at 2021-03-27 19:27:30 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/todos"):
+  
+Started GET "/v1/todos" for 127.0.0.1 at 2021-03-27 19:27:50 +0200
+Processing by V1::TodosController#index as HTML
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 422 Unprocessable Entity in 138ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 531)
+
+
+Started GET "/v1/todos" for 127.0.0.1 at 2021-03-27 19:28:48 +0200
+Processing by V1::TodosController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mTodo Load (0.8ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."created_by" = $1 LIMIT $2 OFFSET $3[0m  [["created_by", "2"], ["LIMIT", 20], ["OFFSET", 0]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.13ms)
+Completed 200 OK in 230ms (Views: 122.6ms | ActiveRecord: 3.6ms | Allocations: 6241)
+
+
+Started GET "/v1/todos" for 127.0.0.1 at 2021-03-27 19:28:54 +0200
+Processing by V1::TodosController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mTodo Load (0.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."created_by" = $1 LIMIT $2 OFFSET $3[0m  [["created_by", "2"], ["LIMIT", 20], ["OFFSET", 0]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.12ms)
+Completed 200 OK in 7ms (Views: 2.9ms | ActiveRecord: 0.6ms | Allocations: 1506)
+
+
+Started GET "/v1/todos" for 127.0.0.1 at 2021-03-27 19:29:03 +0200
+Processing by V1::TodosController#index as HTML
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 422 Unprocessable Entity in 3ms (Views: 2.3ms | ActiveRecord: 0.0ms | Allocations: 159)
+
+
+Started POST "/auth/login?email=oksana2@mail&password=[FILTERED]" for 127.0.0.1 at 2021-03-27 19:32:27 +0200
+Processing by AuthenticationController#authenticate as */*
+  Parameters: {"email"=>"oksana2@mail", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "oksana2@mail"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "oksana2@mail"], ["LIMIT", 1]]
+  ↳ app/auth/authenticate_user.rb:20:in `user'
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.06ms)
+Completed 200 OK in 523ms (Views: 0.6ms | ActiveRecord: 0.4ms | Allocations: 1133)
+
+
+Started GET "/v1/todos" for 127.0.0.1 at 2021-03-27 19:33:29 +0200
+Processing by V1::TodosController#index as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+  [1m[36mTodo Load (0.3ms)[0m  [1m[34mSELECT "todos".* FROM "todos" WHERE "todos"."created_by" = $1 LIMIT $2 OFFSET $3[0m  [["created_by", "2"], ["LIMIT", 20], ["OFFSET", 0]]
+  ↳ app/controllers/concerns/response.rb:6:in `json_response'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.12ms)
+Completed 200 OK in 8ms (Views: 2.9ms | ActiveRecord: 0.9ms | Allocations: 1486)
+
+
+Started GET "/v1/todos" for 127.0.0.1 at 2021-03-27 19:33:41 +0200
+Processing by V1::TodosController#index as HTML
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.15ms)
+Completed 422 Unprocessable Entity in 1ms (Views: 0.9ms | ActiveRecord: 0.0ms | Allocations: 159)
+
+
+Started POST "/v1/todos" for 127.0.0.1 at 2021-03-27 19:40:04 +0200
+Processing by V1::TodosController#create as */*
+  Parameters: {"title"=>"New Todo", "created_by"=>"1", "todo"=>{"title"=>"New Todo", "created_by"=>"1"}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.08ms)
+Completed 422 Unprocessable Entity in 1ms (Views: 0.6ms | ActiveRecord: 18.4ms | Allocations: 162)
+
+
+Started POST "/v1/todos" for 127.0.0.1 at 2021-03-27 19:41:30 +0200
+Processing by V1::TodosController#create as */*
+  Parameters: {"{\"title\": \"New Todo\", \"created_by\": \"1\"}"=>nil}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+[31mUnpermitted parameter: :{"title": "New Todo", "created_by": "1"}[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.09ms)
+Completed 422 Unprocessable Entity in 1745ms (Views: 0.5ms | ActiveRecord: 4.9ms | Allocations: 218837)
+
+
+Started POST "/v1/todos" for 127.0.0.1 at 2021-03-27 19:42:15 +0200
+Processing by V1::TodosController#create as */*
+  Parameters: {"{\"title\": \"New Todo\", \"created_by\": \"1\"}"=>nil}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+[31mUnpermitted parameter: :{"title": "New Todo", "created_by": "1"}[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.13ms)
+Completed 422 Unprocessable Entity in 8ms (Views: 0.8ms | ActiveRecord: 0.5ms | Allocations: 1543)
+
+
+Started POST "/v1/todos" for 127.0.0.1 at 2021-03-27 19:43:02 +0200
+Processing by V1::TodosController#create as */*
+  Parameters: {"{\"title\": \"New Todo\", \"created_by\": \"1\"}"=>nil}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/auth/authorize_api_request.rb:22:in `user'
+[31mUnpermitted parameter: :{"title": "New Todo", "created_by": "1"}[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.11ms)
+Completed 422 Unprocessable Entity in 7ms (Views: 1.1ms | ActiveRecord: 0.4ms | Allocations: 1535)
+
+
